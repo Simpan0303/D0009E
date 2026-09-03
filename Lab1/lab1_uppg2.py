@@ -63,6 +63,7 @@ def sockerkaka(people_amount):
 
 print("Minuter det tar att blanda smeten:", tidblanda(people_amount))
 print("Minuter det tar att grädda smeten:", tidgradda(people_amount))
+print("Total tid:", tidblanda(people_amount) + tidgradda(people_amount))
 sockerkaka(people_amount)
 
 # Deluppgift 4
