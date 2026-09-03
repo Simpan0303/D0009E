@@ -120,18 +120,36 @@ def derivative(f, x, h):
     print("f(x) =", fxh)
     print("f'(x) =", (f(x + h) - f(x - h)) / (2*h))
     return((f(x + h) - f(x - h)) / (2*h))
-
 #print("f'(x) =", derivative(f, 5, 1))
 
 # Deluppgift 5b
 # solve med Newton-Raphson metoden
+# dvs en loop som kollar om differensen mellan x koordinater
+# är mindre än h, vilket indikerar lokalt minimum eller maximum
+# tangenslinjer med lutning (förstaderivatan) df(x),
 def solve(f, x0, h):
     x = float(x0)
-    while True:
-        if derivative(f, x, h):
-            return None
-        if abs(x - (f(x) / derivative(f, x, h)) - x) < h:
-            return x
 
-# x0
+    # körs tills beräkningarna är klara
+    while True:
+        # derivatan av f
+        df = derivative(f, x, h)
+        # check så att icke tillåten operation inte körs
+        if df == 0:
+            raise ValueError("Operation not valid. Derivatan = noll")
+
+        # x_new används för att undvika upprepa samma beräkning under samma loop
+        x_new = x - f(x) / df
+        # själva checken om differensen mellan x_new och x är mindre än h
+        if abs(x_new - x) < h:
+            # om ja är beräkningen klar, varpå loopen avlsutas och värdet returneras
+            return float(x_new)
+        # om nej, fortsätt loopen
+        x = x_new
+
+# f är den matematiska funktionen
+# x0 är den initiala gissningen. Ju närmare x0 är f(x)=0, 
+# desto färre ggr körs loopen i funktionen
+# h, ("höjden") är ett litet steg antingen höger (x+h) elr vänster (x-h),
+# dessutom gäller: mindre h, större precision på f(x)=0
 print(solve(f, 5, 1))
