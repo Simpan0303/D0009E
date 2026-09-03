@@ -153,3 +153,16 @@ def solve(f, x0, h):
 # h, ("höjden") är ett litet steg antingen höger (x+h) elr vänster (x-h),
 # dessutom gäller: mindre h, större precision på f(x)=0
 print(solve(f, 5, 1))
+
+# testcases
+def f_test1(x):
+    return x**2 - 1
+def f_test2(x):
+    return 2**x
+def f_test3(x):
+    return x - (math.e**(-x))
+
+#print("test1:", solve(f_test1, 14, 2))
+#print("test2:", solve(f_test2, 10, 0.5))
+print("numerisk lösning test3:", solve(f_test3, 4, 1))
+# inte helt klar. måste kolla
