@@ -1,6 +1,8 @@
 # Labb 2 av Simon Svanberg
 # Obs! Varning för myyycket svengelska nedan.
 
+import math
+
 # ------------------------------------------------------------------------------
 # Uppgift 1
 # Rekursivt bounce
@@ -108,10 +110,9 @@ def tvarsumma2(number):
 
 # Deluppgift 5a
 # Returnerar första derivatan för f(x)
-import math
 def f(x):
     #print("bruh")
-    return x**2
+    return float(x**2)
     #return x + 2
     #return math.log(x) #log(x, bas) bas e
 
@@ -152,7 +153,7 @@ def solve(f, x0, h):
 # desto färre ggr körs loopen i funktionen
 # h, ("höjden") är ett litet steg antingen höger (x+h) elr vänster (x-h),
 # dessutom gäller: mindre h, större precision på f(x)=0
-print(solve(f, 5, 1))
+#print(solve(f, 5, 1))
 
 # testcases
 def f_test1(x):
@@ -162,7 +163,10 @@ def f_test2(x):
 def f_test3(x):
     return x - (math.e**(-x))
 
-#print("test1:", solve(f_test1, 14, 2))
-#print("test2:", solve(f_test2, 10, 0.5))
-print("numerisk lösning test3:", solve(f_test3, 4, 1))
-# inte helt klar. måste kolla
+
+if __name__ == "__main__":
+    print("what")
+    #print("test1:", solve(f_test1, 14, 2))
+    #print("test2:", solve(f_test2, 10, 0.5))
+    #print("numerisk lösning test3:", solve(f_test3, 4, 1))
+   
