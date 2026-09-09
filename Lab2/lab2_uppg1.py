@@ -23,7 +23,7 @@ def bounce(number):
 
 # Interaktivt call
 # bounce(int(input("Siffra för bounce: ")))
-# bounce(5)
+bounce(5)
 
 """
 
