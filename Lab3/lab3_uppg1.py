@@ -90,7 +90,8 @@ def wordlist2():
         "Menu overview:\n",
         "1: Insert\n",
         "2: Lookup\n",
-        "3: Exit program"
+        "3: Exit program\n",
+        "4: (Delete item)"
         )
         program_state = int(input("Choose alternative: "))
 
@@ -118,6 +119,7 @@ def wordlist2():
                 n += 1
             if found == False:
                 print("ERROR! Not a valid input. Word is not in the list")
+            found = False
 
 
         # Exit
@@ -125,10 +127,89 @@ def wordlist2():
             print("Exiting program")
             return 
 
+        # Delete. Inte jättesnyggt men det funkar.
+        elif program_state == 4:
+            print("Delete item")
+            word = input("Word: ")
+
+            n = 0
+            while n < len(cool_list):
+                if word == cool_list[n][0]:
+                    definition = cool_list[n][1]
+                    cool_list.remove((word, definition))
+                    print(cool_list)
+                    found = True
+                n += 1
+            if found == False:
+                print("ERROR! Word is not in the list")    
+
         # Misinput check
         else:
             print("Not a valid input")
 
 
 
-wordlist2()
+#wordlist2()
+# ------------------------------------------------------------------
+# Uppgift 3
+# Ett dictionary
+
+def wordlist3():
+    worddef_dict = dict()
+     
+    while True:
+        # State machine elr nåt
+        # "Menyn"
+        print(
+        "---------------------\n",
+        "Menu overview:\n",
+        "1: Insert\n",
+        "2: Lookup\n",
+        "3: Exit program\n",
+        "4: (Delete item)"
+        )
+        program_state = int(input("Choose alternative: "))
+
+        # Found flagga
+        found = False
+
+        # Insert
+        if program_state == 1:
+            print("Insert word and definition")
+            word = str(input("Word: "))
+            definition = str(input("Definition: "))
+
+            worddef_dict[word] = definition
+
+        elif program_state == 2:
+            print("Lookup definition for word")
+            word = input("Word: ")
+            if word in worddef_dict:
+                found = True
+                print("Definition:", worddef_dict.get(word))
+
+            if found == False:
+                print("ERROR! Not a valid input. Word is not in the list")
+            found = False
+
+        # Exit
+        elif program_state == 3:
+            print("Exiting program")
+            return 
+
+        elif program_state == 4:
+            print("Delete dict entry")
+            word = input("Word: ")
+            if word in worddef_dict:
+                found == True
+                worddef_dict.pop(word)
+                print(worddef_dict)
+            elif found == False:
+                print("ERROR! Word not in list.")
+
+        # Misinput check
+        else:
+            print("Not a valid input")
+
+
+wordlist3()
