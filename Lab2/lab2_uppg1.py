@@ -1,5 +1,4 @@
 # Labb 2 av Simon Svanberg
-# Obs! Varning för myyycket svengelska nedan.
 
 import math
 
@@ -23,14 +22,14 @@ def bounce(number):
 
 # Interaktivt call
 # bounce(int(input("Siffra för bounce: ")))
-bounce(5)
+#bounce(5)
 
 """
 
 bounce(n):
     print(n)
-    bounce(n-1)
-    print(n)
+        bounce(n-1)
+        print(n)
 
 """
 
@@ -56,7 +55,7 @@ def bounce2(number):
         print(temp)
 
 # Interaktivt call
-# bounce2(int(input("Siffra för bounce2: ")))
+#bounce2(int(input("Siffra för bounce2: ")))
 
 
 # -------------------------------------------------------------------------------
@@ -87,8 +86,6 @@ def tvarsumma(number):
 #x_sum = int(input("Ange tal att få tvärsumman från: "))
 #print("Tvärsumman blir: ", tvarsumma(x_sum))
 
-# För att vara ärlig råkade jag bara på den här lösningen, funkar najs iaf.
-
 # -------------------------------------------------------------------------------
 # Deluppgift 4
 # Iterativ tvärsumma
@@ -98,9 +95,7 @@ def tvarsumma2(number):
 
     digit = number % 10
 
-    count = 0
     while number:
-        count += 1
         number = number // 10
         digit = digit + number % 10
 
@@ -108,21 +103,23 @@ def tvarsumma2(number):
 
 #tvarsumma2(int(input("Ange tal att få tvärsumma från: ")))
 
+# -------------------------------------------------------------------------------
 # Deluppgift 5a
 # Returnerar första derivatan för f(x)
 def f(x):
-    #print("bruh")
     return float(x**2)
     #return x + 2
     #return math.log(x) #log(x, bas) bas e
 
 def derivative(f, x, h):
     fxh = f(x + h)
-    print("f(x) =", fxh)
-    print("f'(x) =", (f(x + h) - f(x - h)) / (2*h))
+    #print("f(x) =", fxh)
+    #print("f'(x) =", (f(x + h) - f(x - h)) / (2*h))
     return((f(x + h) - f(x - h)) / (2*h))
-#print("f'(x) =", derivative(f, 5, 1))
 
+print("f'(x) =", derivative(f, 5, 1))
+
+# -------------------------------------------------------------------------------
 # Deluppgift 5b
 # solve med Newton-Raphson metoden
 # dvs en loop som kollar om differensen mellan x koordinater
@@ -164,9 +161,7 @@ def f_test3(x):
     return x - (math.e**(-x))
 
 
-if __name__ == "__main__":
-    print("what")
-    #print("test1:", solve(f_test1, 14, 2))
-    #print("test2:", solve(f_test2, 10, 0.5))
-    #print("numerisk lösning test3:", solve(f_test3, 4, 1))
+print("test1:", solve(f_test1, 14, 0.01))
+#print("test2:", solve(f_test2, 10, 0.5))
+#print("numerisk lösning test3:", solve(f_test3, 4, 1))
    

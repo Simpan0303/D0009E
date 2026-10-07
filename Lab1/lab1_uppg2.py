@@ -40,13 +40,14 @@ def tidgradda(people_amount):
     return t
 
 # Deluppgift 3
-def sockerkaka(people_amount):
+def recept(people_amount):
     # Kvot baserad på antal människor som varje ingrediens 
     # ska multipliceras med
     kvot = float(people_amount/4)
 
     # Delar upp printoutet till en "kolumn" ingredienser
-    print("\nRecept för", people_amount, "personer:\n", 
+    print(
+          "Recept för", people_amount, "personer:\n", 
           "Till formen:\n",
           15*kvot, "g smör\n",
           3*kvot, "msk ströbröd\n\n",
@@ -60,14 +61,20 @@ def sockerkaka(people_amount):
           75*kvot, "g smör\n",
           1*kvot, "dl vatten")
 
+def sockerkaka(people_amount):
+    print("Minuter det tar att blanda smeten:", tidblanda(people_amount))
+    print("Minuter det tar att grädda smeten:", tidgradda(people_amount))
+    print("Total tid:", tidblanda(people_amount) + tidgradda(people_amount))
+    recept(people_amount)
 
-print("Minuter det tar att blanda smeten:", tidblanda(people_amount))
-print("Minuter det tar att grädda smeten:", tidgradda(people_amount))
-print("Total tid:", tidblanda(people_amount) + tidgradda(people_amount))
 sockerkaka(people_amount)
+#recept(people_amount)
+
 
 # Deluppgift 4
 # Skriver ut recept för sockerkakerecept för 4 respektive 7 personer
 sockerkaka(4)
 sockerkaka(7)
+#recept(4)
+#recept(7)
 

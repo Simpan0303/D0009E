@@ -10,9 +10,37 @@
 # Ordlista 1,
 # med 2 listor av strängar
 
+def list_insert(words, definitions):
+    # Insert
+    word = input("Word: ")
+    if word not in words:
+        definition = input("Definition: ")
+
+        words.append(word)
+        definitions.append(definition)
+    else:
+        print(word, "already in list")
+
+
+
+def list_lookup(words, definitions):
+    word = input("Word: ")
+
+    # Check if word is in list
+    # If yes, get index
+    if word in words:
+        word_i = words.index(word)
+        print("index of", word, "is:", word_i)
+        print("Definition:", definitions[word_i])
+    else:
+        print("ERROR! Word", word, "is not in the list, yeeting you back to menu.")
+
+
+
+
 def wordlist1():
-    list_of_words = list()
-    list_of_definitions = list()
+    words = list()
+    definitions = list()
 
     # Loopen som får programmet att köras kontinuerligt,
     # tills nedstängning önskas
@@ -26,39 +54,23 @@ def wordlist1():
         "2: Lookup\n",
         "3: Exit program"
         )
-        program_state = int(input("Choose alternative: "))
+        
+        try:
+            program_state = int(input("Choose alternative: "))
+            print("You chose:", program_state)
+        except ValueError:
+            print("Not an int.")
+            continue
+
             # Insert
         if program_state == 1:
             print("Insert word and definition")
-            word = input("Word: ")
-            definition = input("Definition: ")
-            list_of_words.append(word)
-            list_of_definitions.append(definition)
+            list_insert(words, definitions)
 
             # Lookup
         elif program_state == 2:
             print("Lookup definition for word")
-            word = input("Word: ")
-
-            # Check if word is in list
-            # If yes, get index
-            # print both lists at index
-            n = 0
-            # flagga för att hålla koll på om ordet hittats.
-            found = False
-            while n < len(list_of_words):
-                if word == list_of_words[n]:
-                    print("index of", word, "is:", int(n))
-                    print("Definition:", list_of_definitions[int(n)])
-                    found = True
-
-                    # alernativt n = len(list_of_words)
-                    break
-                else:
-                    n += 1
-            if found == False:
-                print("ERROR! Word", word, "is not in the list, yeeting you back to menu.")
-
+            list_lookup(words, definitions)
 
             # Exit
         elif program_state == 3:
@@ -75,15 +87,47 @@ def wordlist1():
 # ------------------------------------------------------------------
 # Uppgift 2
 # En lista med tuplar
-# Theo tupp, dsvdv
+def tuple_insert(tuples_list, word_and_def):
+
+    word = str(input("Word: "))
+    if word not in tuples_list:
+        definition = str(input("Definition: ")) 
+        word_and_def = (word, definition)
+        tuples_list.append(word_and_def)
+    else:
+        print(word, "not in list.")
+
+def tuple_lookup(tuples_list):
+    word = input("Word: ")
+    found = False
+    for word_i, definition in tuples_list:
+        if word_i == word:
+            print("Definition:", definition)
+            found = True
+    if not found:
+        print("WORD NOT IN LIST!")
+
+def word_delete(tuples_list):
+    word = input("Word: ")
+    found = False
+    n = 0
+    while n < len(tuples_list):
+        if word == tuples_list[n][0]:
+            definition = tuples_list[n][1]
+            tuples_list.remove((word, definition))
+            print("The updated list is now:", tuples_list)
+            found = True
+        n += 1
+    if not found:
+        print("WORD NOT IN LIST!")    
 
 def wordlist2():
 
-    cool_list = list()
+    tuples_list = list()
     word_and_def = tuple()
 
     while True:
-        # State machine elr nåt
+        # State machine typ
         # "Menyn"
         print(
         "---------------------\n",
@@ -93,34 +137,22 @@ def wordlist2():
         "3: Exit program\n",
         "4: (Delete item)"
         )
-        program_state = int(input("Choose alternative: "))
-
-        found = False
+        try:
+            program_state = int(input("Choose alternative: "))
+            print("You chose:", program_state)
+        except ValueError:
+            print("Not an int.")
+            continue
 
         # Insert
         if program_state == 1:
             print("Insert word and definition")
-            word = str(input("Word: "))
-            definition = str(input("Definition: "))
-            
-            word_and_def = (word, definition)
-            cool_list.append(word_and_def)
+            tuple_insert(tuples_list, word_and_def)
 
         # Lookup
         elif program_state == 2:
             print("Lookup definition for word")
-            word = input("Word: ")
-
-            n = 0
-            while n < len(cool_list):
-                if word == cool_list[n][0]:
-                    found = True
-                    print("Definition:", cool_list[n][1])
-                n += 1
-            if found == False:
-                print("ERROR! Not a valid input. Word is not in the list")
-            found = False
-
+            tuple_lookup(tuples_list)
 
         # Exit
         elif program_state == 3:
@@ -130,33 +162,46 @@ def wordlist2():
         # Delete. Inte jättesnyggt men det funkar.
         elif program_state == 4:
             print("Delete item")
-            word = input("Word: ")
-
-            n = 0
-            while n < len(cool_list):
-                if word == cool_list[n][0]:
-                    definition = cool_list[n][1]
-                    cool_list.remove((word, definition))
-                    print(cool_list)
-                    found = True
-                n += 1
-            if found == False:
-                print("ERROR! Word is not in the list")    
+            word_delete(tuples_list)
+            word = input("Word: ") 
 
         # Misinput check
         else:
             print("Not a valid input")
 
 
-
 #wordlist2()
+
 # ------------------------------------------------------------------
 # Uppgift 3
 # Ett dictionary
 
+def dict_input(worddef_dict):
+    word = str(input("Word: "))
+    definition = str(input("Definition: "))
+
+    worddef_dict[word] = definition
+
+def dict_lookup(worddef_dict):
+    word = input("Word: ")
+    if word in worddef_dict:
+        print("Definition:", worddef_dict.get(word))
+    
+    else:
+        print("ERROR! Not a valid input. Word is not in the dict")
+
+def dict_delete(worddef_dict):
+    word = input("Word: ")
+    if word in worddef_dict:
+        worddef_dict.pop(word)
+        print(worddef_dict)
+    else:
+        print("ERROR! Word not in list.")
+
+
 def wordlist3():
     worddef_dict = dict()
-     
+    
     while True:
         # State machine elr nåt
         # "Menyn"
@@ -168,7 +213,12 @@ def wordlist3():
         "3: Exit program\n",
         "4: (Delete item)"
         )
-        program_state = int(input("Choose alternative: "))
+        try:
+            program_state = int(input("Choose alternative: "))
+            print("You chose:", program_state)
+        except ValueError:
+            print("Not an int.")
+            continue
 
         # Found flagga
         found = False
@@ -176,21 +226,11 @@ def wordlist3():
         # Insert
         if program_state == 1:
             print("Insert word and definition")
-            word = str(input("Word: "))
-            definition = str(input("Definition: "))
-
-            worddef_dict[word] = definition
+            dict_input(worddef_dict)
 
         elif program_state == 2:
             print("Lookup definition for word")
-            word = input("Word: ")
-            if word in worddef_dict:
-                found = True
-                print("Definition:", worddef_dict.get(word))
-
-            if found == False:
-                print("ERROR! Not a valid input. Word is not in the list")
-            found = False
+            dict_lookup(worddef_dict)
 
         # Exit
         elif program_state == 3:
@@ -199,13 +239,7 @@ def wordlist3():
 
         elif program_state == 4:
             print("Delete dict entry")
-            word = input("Word: ")
-            if word in worddef_dict:
-                found == True
-                worddef_dict.pop(word)
-                print(worddef_dict)
-            elif found == False:
-                print("ERROR! Word not in list.")
+            dict_delete(worddef_dict)
 
         # Misinput check
         else:
