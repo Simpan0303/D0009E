@@ -87,15 +87,15 @@ def wordlist1():
 # ------------------------------------------------------------------
 # Uppgift 2
 # En lista med tuplar
-def tuple_insert(tuples_list, word_and_def):
+def tuple_insert(tuples_list):
+    word = input("Word: ")
+    for existing_word, definition in tuples_list:
+        if existing_word == word:
+            print(word, "already in list")
+            return
 
-    word = str(input("Word: "))
-    if word not in tuples_list:
-        definition = str(input("Definition: ")) 
-        word_and_def = (word, definition)
-        tuples_list.append(word_and_def)
-    else:
-        print(word, "not in list.")
+    definition = input("Definition: ")
+    tuples_list.append((word, definition))
 
 def tuple_lookup(tuples_list):
     word = input("Word: ")
@@ -124,7 +124,6 @@ def word_delete(tuples_list):
 def wordlist2():
 
     tuples_list = list()
-    word_and_def = tuple()
 
     while True:
         # State machine typ
@@ -147,7 +146,7 @@ def wordlist2():
         # Insert
         if program_state == 1:
             print("Insert word and definition")
-            tuple_insert(tuples_list, word_and_def)
+            tuple_insert(tuples_list)
 
         # Lookup
         elif program_state == 2:
@@ -177,9 +176,12 @@ def wordlist2():
 # Ett dictionary
 
 def dict_input(worddef_dict):
-    word = str(input("Word: "))
-    definition = str(input("Definition: "))
+    word = input("Word: ")
+    if word in worddef_dict:
+        print(word, "already in dictionary")
+        return
 
+    definition = input("Definition: ")
     worddef_dict[word] = definition
 
 def dict_lookup(worddef_dict):
